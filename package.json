@@ -1,0 +1,43 @@
+{
+  "name": "alexa-coin-market-briefing",
+  "version": "1.0.0",
+  "description": "Serverless cron job that reads coinmarketcap.com API and creates a feed for Alexa briefing",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.202.0",
+    "luxon": "^0.5.3",
+    "request": "^2.83.0",
+    "request-promise-native": "^1.0.5",
+    "uuid": "^3.2.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-env": "^1.6.1",
+    "rollup-plugin-babel": "^3.0.3",
+    "rollup-plugin-node-resolve": "^3.0.2"
+  },
+  "scripts": {
+    "build": "yarn install && rollup -c",
+    "package": "yarn install && rollup -c && yarn install --production && sls package",
+    "deploy": "yarn install && rollup -c && yarn install --production && sls deploy",
+    "lint": "eslint src/*.js; true"
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "node": "6.10"
+          },
+          "modules": false
+        }
+      ]
+    ],
+    "plugins": [
+      "external-helpers"
+    ]
+  }
+}

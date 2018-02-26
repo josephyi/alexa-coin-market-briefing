@@ -1,0 +1,30 @@
+service: coin-market-briefing
+
+frameworkVersion: ">=1.4.0 <2.0.0"
+
+package:
+  exclude:
+    - src/**
+    - .git/**
+    - package.json
+
+custom:
+  stage: "${opt:stage, self:provider.stage}"
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  environment: ${file(env.yml):${self:custom.stage}}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:PutObject
+        - s3:PutObjectAcl
+      Resource: "arn:aws:s3:::${self:provider.environment.BUCKET_NAME}/*"
+
+
+functions:
+  cron:
+    handler: build/bundle.run
+    events:
+      - schedule: rate(1 minute)
