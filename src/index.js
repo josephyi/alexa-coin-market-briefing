@@ -48,8 +48,10 @@ const feedify = (entry, dateTime) => {
 
 exports.run = async (event, context) => {
   const response = await coinmarketRequest();
-  const currentTime = DateTime.utc().toISO();
-  const feed = response.map(entry => feedify(entry, currentTime));
+  const currentTime = DateTime.utc();
+  const feed = response.map((entry, index) =>
+    feedify(entry, currentTime.minus({ seconds: index }).toISO())
+  );
   const params = {
     Bucket: process.env.BUCKET_NAME,
     Key: process.env.OBJECT_KEY,
