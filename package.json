@@ -5,7 +5,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "aws-sdk": "^2.202.0",
+    "aws-sdk": "^2.814.0",
     "luxon": "^0.5.3",
     "request": "^2.83.0",
     "request-promise-native": "^1.0.5",
