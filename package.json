@@ -7,8 +7,8 @@
   "dependencies": {
     "aws-sdk": "^2.202.0",
     "luxon": "^0.5.3",
-    "request": "^2.83.0",
-    "request-promise-native": "^1.0.5",
+    "request": "^2.88.2",
+    "request-promise-native": "^1.0.9",
     "uuid": "^3.2.1"
   },
   "devDependencies": {
